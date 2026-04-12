@@ -1,0 +1,178 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-champagne: var(--champagne);
+  --color-champagne-muted: var(--champagne-muted);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #F5F5DC;
+  --foreground: hsl(30, 20%, 18%);
+  --card: hsl(38, 30%, 91%);
+  --card-foreground: hsl(30, 20%, 18%);
+  --popover: hsl(38, 30%, 91%);
+  --popover-foreground: hsl(30, 20%, 18%);
+  --primary: hsl(38, 55%, 48%);
+  --primary-foreground: hsl(40, 30%, 98%);
+  --secondary: hsl(35, 22%, 86%);
+  --secondary-foreground: hsl(30, 18%, 28%);
+  --muted: hsl(35, 18%, 88%);
+  --muted-foreground: hsl(30, 12%, 48%);
+  --accent: hsl(35, 50%, 42%);
+  --accent-foreground: hsl(40, 30%, 98%);
+  --destructive: hsl(0, 60%, 50%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(35, 22%, 82%);
+  --input: hsl(35, 22%, 82%);
+  --ring: hsl(38, 55%, 48%);
+  --chart-1: hsl(38, 55%, 48%);
+  --chart-2: hsl(180, 30%, 45%);
+  --chart-3: hsl(220, 20%, 45%);
+  --chart-4: hsl(50, 70%, 55%);
+  --chart-5: hsl(30, 70%, 55%);
+  --sidebar: hsl(35, 22%, 90%);
+  --sidebar-foreground: hsl(30, 20%, 18%);
+  --sidebar-primary: hsl(38, 55%, 48%);
+  --sidebar-primary-foreground: hsl(40, 30%, 98%);
+  --sidebar-accent: hsl(35, 22%, 86%);
+  --sidebar-accent-foreground: hsl(30, 18%, 28%);
+  --sidebar-border: hsl(35, 22%, 82%);
+  --sidebar-ring: hsl(38, 55%, 48%);
+
+  --gold: hsl(38, 55%, 48%);
+  --gold-light: hsl(40, 50%, 62%);
+  --gold-dark: hsl(35, 60%, 35%);
+  --champagne: #EADBC8;
+  --champagne-muted: hsl(38, 28%, 76%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Cormorant Garamond', 'Playfair Display', 'Georgia', serif;
+  }
+}
+
+/* CSS animations that work without JS */
+@keyframes luxFadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes luxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes luxScale {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 8px 40px -8px hsl(38,55%,48%,0.5), 0 0 25px -5px hsl(38,55%,48%,0.3); }
+  50% { box-shadow: 0 12px 50px -6px hsl(38,55%,48%,0.7), 0 0 35px -3px hsl(38,55%,48%,0.45); }
+}
+@keyframes pulseRing {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.25); opacity: 0; }
+}
+@keyframes pulseRing2 {
+  0%, 100% { transform: scale(1); opacity: 0.25; }
+  50% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@layer utilities {
+  .font-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Cormorant Garamond', 'Playfair Display', 'Georgia', serif;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #8B6914, #C5993E, #DAB054, #C5993E, #8B6914);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s linear infinite;
+  }
+
+  .anim-fade-up {
+    animation: luxFadeUp 0.8s ease-out both;
+  }
+  .anim-fade-up-d1 { animation: luxFadeUp 0.8s 0.15s ease-out both; }
+  .anim-fade-up-d2 { animation: luxFadeUp 0.8s 0.3s ease-out both; }
+  .anim-fade-up-d3 { animation: luxFadeUp 0.8s 0.45s ease-out both; }
+  .anim-fade-up-d4 { animation: luxFadeUp 0.8s 0.6s ease-out both; }
+  .anim-fade-up-d5 { animation: luxFadeUp 0.8s 0.75s ease-out both; }
+  .anim-fade-in { animation: luxFadeIn 1s ease-out both; }
+  .anim-fade-in-d1 { animation: luxFadeIn 1s 0.3s ease-out both; }
+  .anim-scale { animation: luxScale 0.9s ease-out both; }
+
+  .btn-pulse-glow {
+    animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+
+  .ring-pulse {
+    animation: pulseRing 2.8s ease-in-out infinite;
+  }
+  .ring-pulse-2 {
+    animation: pulseRing2 3.2s 0.4s ease-in-out infinite;
+  }
+}
