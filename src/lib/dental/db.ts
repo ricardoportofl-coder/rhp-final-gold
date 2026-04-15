@@ -1,5 +1,3 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
-import { join, dirname } from "path";
 import type {
   DentalDB,
   Appointment,
@@ -9,8 +7,21 @@ import type {
   SaveSettingsInput,
 } from "./types";
 
-const DB_PATH       = join(process.cwd(), "database", "dental_core.json");
-const SETTINGS_PATH = join(process.cwd(), "database", "clinic_settings.json");
+// Paths built without static `path` import so client bundle stays clean
+const DB_PATH       = `${process.cwd()}/database/dental_core.json`;
+const SETTINGS_PATH = `${process.cwd()}/database/clinic_settings.json`;
+
+// Dynamic import helpers — only resolved at runtime on the server
+async function fsRead(file: string): Promise<string> {
+  const { readFile } = await import("fs/promises");
+  return readFile(file, "utf-8");
+}
+async function fsWrite(file: string, data: string): Promise<void> {
+  const { writeFile, mkdir } = await import("fs/promises");
+  const { dirname } = await import("path");
+  await mkdir(dirname(file), { recursive: true });
+  await writeFile(file, data, "utf-8");
+}
 const BUFFER_MIN    = 15; // minutes between appointments
 
 // ─── DEFAULT SETTINGS ─────────────────────────────────────────────────────────
@@ -25,18 +36,17 @@ const DEFAULT_SETTINGS: ClinicSettings = {
 
 export async function readSettings(): Promise<ClinicSettings> {
   try {
-    const raw = await readFile(SETTINGS_PATH, "utf-8");
+    const raw = await fsRead(SETTINGS_PATH);
     return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) } as ClinicSettings;
   } catch {
-    await writeFile(SETTINGS_PATH, JSON.stringify(DEFAULT_SETTINGS, null, 2), "utf-8");
+    await fsWrite(SETTINGS_PATH, JSON.stringify(DEFAULT_SETTINGS, null, 2));
     return DEFAULT_SETTINGS;
   }
 }
 
 export async function saveSettings(input: SaveSettingsInput): Promise<ClinicSettings> {
   const updated: ClinicSettings = { ...input, updatedAt: new Date().toISOString() };
-  await mkdir(dirname(SETTINGS_PATH), { recursive: true });
-  await writeFile(SETTINGS_PATH, JSON.stringify(updated, null, 2), "utf-8");
+  await fsWrite(SETTINGS_PATH, JSON.stringify(updated, null, 2));
   return updated;
 }
 
@@ -44,7 +54,7 @@ export async function saveSettings(input: SaveSettingsInput): Promise<ClinicSett
 
 export async function readDB(): Promise<DentalDB> {
   try {
-    const raw = await readFile(DB_PATH, "utf-8");
+    const raw = await fsRead(DB_PATH);
     return JSON.parse(raw) as DentalDB;
   } catch {
     const empty: DentalDB = { appointments: [], patients: [], notifications_log: [] };
@@ -54,8 +64,7 @@ export async function readDB(): Promise<DentalDB> {
 }
 
 export async function writeDB(data: DentalDB): Promise<void> {
-  await mkdir(dirname(DB_PATH), { recursive: true });
-  await writeFile(DB_PATH, JSON.stringify(data, null, 2), "utf-8");
+  await fsWrite(DB_PATH, JSON.stringify(data, null, 2));
 }
 
 // ─── CONFLICT DETECTION ───────────────────────────────────────────────────────
