@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import LuxuryHeader from "@/components/LuxuryHeader";
 import HeroSection from "@/components/HeroSection";
+import PersonalLevelSection from "@/components/PersonalLevelSection";
+import GlobalReachSection from "@/components/GlobalReachSection";
 
 import ProfissoesSection from "@/components/ProfissoesSection";
 import BusinessSection from "@/components/BusinessSection";
@@ -16,8 +18,9 @@ function Index() {
     <main className="min-h-screen bg-background">
       <LuxuryHeader />
       <HeroSection />
-      
-      
+      <GlobalReachSection />
+      <PersonalLevelSection />
+
       <ProfissoesSection />
       <BusinessSection />
       <CorporateSection />

@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gabriele-bot",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "worker/index.ts",
+
+  // KV namespace for conversation history (run: bunx wrangler kv namespace create CONVERSATION_KV)
+  "kv_namespaces": [
+    {
+      "binding": "CONVERSATION_KV",
+      "id": "REPLACE_WITH_YOUR_KV_NAMESPACE_ID",
+      "preview_id": "REPLACE_WITH_YOUR_KV_PREVIEW_ID"
+    }
+  ]
+
+  // Secrets — set via CLI (never commit to git):
+  //   bunx wrangler secret put WHATSAPP_TOKEN        --config wrangler.worker.jsonc
+  //   bunx wrangler secret put WHATSAPP_VERIFY_TOKEN --config wrangler.worker.jsonc
+  //   bunx wrangler secret put WHATSAPP_PHONE_NUMBER_ID --config wrangler.worker.jsonc
+  //   bunx wrangler secret put OPENAI_API_KEY        --config wrangler.worker.jsonc
+}

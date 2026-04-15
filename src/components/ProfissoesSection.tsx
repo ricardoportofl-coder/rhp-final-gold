@@ -49,7 +49,7 @@ export default function ProfissoesSection() {
             <span className="text-gradient-gold">Professional</span> Level
           </h2>
           <p className="font-body text-muted-foreground text-base max-w-2xl mx-auto" style={{ fontWeight: 300 }}>
-            Ideal for independent specialists & elite autônomos
+            Ideal for independent specialists and elite professionals
           </p>
         </div>
 

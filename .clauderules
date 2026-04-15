@@ -1,0 +1,73 @@
+# CLAUDE RULES — Smile Premium Dental / RHP Final Gold
+# Projeto: SaaS de agendamento modular, vertical Odontologia (Fernando)
+# Maintainer: Ricardo Porto
+# Última atualização: 2026-04-14
+
+## IDENTIDADE DO PRODUTO
+- Nome comercial: **Smile Premium Dental**
+- Proprietário do consultório: **Fernando** (Dr. Fernando Álvarez, Clinic Director)
+- Cidade/mercado principal: **Miami-Dade, FL, USA**
+- Visão de expansão: plataforma modular para **20+ verticais** (dentistry → aesthetics → physiotherapy → psychology → veterinary → beauty → fitness → ophthalmology…)
+
+## PRINCÍPIO MÁXIMO: DESIGN APPLE
+- Toda interface segue a estética do **Apple Human Interface Guidelines 2026**
+- Fonte base: `"-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', system-ui, sans-serif"`
+- Paleta: branco `#FFFFFF`, cinza claro `#F5F5F7`, cinza texto `#6E6E73`, preto `#1D1D1F`
+- Accent primário: `#007AFF` (iOS blue)
+- Success: `#34C759` | Warning: `#FF9F0A` | Danger: `#FF3B30` | Purple: `#AF52DE`
+- Sombras suaves, bordas arredondadas (16–28px), motion fluida (ease [0.25,0.1,0.25,1])
+- Nunca usar gradientes agressivos ou cores saturadas demais
+- Monitor de referência: **49 polegadas ultrawide** — layouts devem usar `maxWidth` adequado e nunca quebrar em resoluções largas
+
+## ARQUITETURA MODULAR ("SKIN MASTER")
+- **Engine core** (compartilhado entre verticais): conflict detection, slot engine, WhatsApp automation, PDF tickets, revenue reporting
+- **Skin layer** (por vertical): serviços, profissionais, cores de accent, copy, ícones
+- Ao adicionar nova vertical: criar pasta `src/components/{vertical}/` com Scheduler + TicketCard + Actions
+- Nunca duplicar a engine — sempre abstrair em `src/lib/`
+
+## REGRAS DE NEGÓCIO — CONSULTÓRIO DO FERNANDO
+- Horários: 08:00–12:00 e 14:00–17:30, seg–sex (sem fins de semana)
+- Buffer obrigatório: 15 minutos entre consultas
+- 4 doutores ativos: Sarah (General), James (Ortho), Emily (Cosmetic), Michael (Implant)
+- WhatsApp de confirmação: disparado automaticamente ao criar agendamento
+- Nenhum double-booking é tolerado — verificar `getOccupiedSlots` antes de salvar
+- PDF Ticket: gerado com jsPDF, inclui QR code, header gradient azul/índigo, rodapé com ID único
+
+## BOTÕES OBRIGATÓRIOS EM TODA TELA DE CONSULTÓRIO
+- **Botão Sair**: retorna para `/home` (landing page de vendas) — estilo ghost/secundário
+- **Botão Suporte**: abre WhatsApp `wa.me/13059227181` em nova aba — estilo verde `#25D366`
+- Ambos devem estar visíveis na sidebar ou no header do módulo dental
+
+## ROTA `/home` — LANDING PAGE DE VENDAS
+- Propósito: converter visitantes em clientes (Fernando compra o SaaS)
+- Não é a página principal (que é `/`) — é a sales page dedicada ao produto dental
+- Deve conter: Hero, Stats, Features, Dashboard Preview, Testimonials, How it Works, Platform Vision (20 verticais), CTA
+- Todos os CTAs apontam para `/dental` (booking) e `/admin` (dashboard)
+
+## ROTA `/` — GOLDEN VOICE (GABRIELE)
+- Produto diferente: locução com IA para marcas
+- Não misturar com o dental — são produtos independentes neste mesmo repo
+
+## PADRÕES DE CÓDIGO
+- Stack: TanStack Start + React + TypeScript + Vite + Cloudflare Workers
+- ORM: Drizzle + D1 (SQLite serverless)
+- Animações: Framer Motion (sempre com ease cubic-bezier Apple)
+- Formulários: react-hook-form + zod
+- Ícones: lucide-react (não usar heroicons ou outros)
+- PDF: jsPDF v4 (dynamic import para lazy load)
+- QR Code: qrcode.react (QRCodeSVG para tela, QRCodeCanvas para PDF embedding)
+- Estilo: inline styles com tokens de cor via ThemeCtx (evitar CSS classes no dental module)
+
+## O QUE NUNCA FAZER
+- Não adicionar mock data permanente no banco — usar fixtures só em dev
+- Não criar arquivos desnecessários (README extras, docs redundantes)
+- Não adicionar error handling para cenários impossíveis
+- Não remover o botão de WhatsApp — é KPI primário do Fernando
+- Não alterar a paleta de cores sem autorização explícita
+- Não usar emojis em texto de código, apenas onde já existem no produto
+
+## EXPANSÃO PARA 20 LOJAS / MULTI-TENANT
+- Cada "loja" é um `clinicId` no banco
+- A tabela `appointments` já tem `doctorId` e `date` — adicionar `clinicId` na migration quando necessário
+- O plano é: 1 instância Cloudflare Workers por região, D1 database por cliente
+- Pricing model target: R$297/mês por clínica, 20 clínicas = R$5.940 MRR como fase 1

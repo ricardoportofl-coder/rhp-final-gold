@@ -12,40 +12,40 @@ const slides = [
   },
   {
     title: "Audiobooks Premium",
-    subtitle: "Narrativas que ganham vida",
-    description: "Cada capítulo é uma experiência imersiva com expressão emocional autêntica e ritmo envolvente.",
+    subtitle: "Stories that come alive",
+    description: "Each chapter becomes an immersive experience with authentic emotional expression and engaging rhythm.",
     icon: Headphones,
     image: null,
     bg: "linear-gradient(135deg, #3D2B14 0%, #6B4C28 40%, #8B6934 100%)",
   },
   {
-    title: "Spots Publicitários",
-    subtitle: "Campanhas que convertem",
-    description: "Locuções comerciais com presença e carisma que capturam a atenção do seu público.",
+    title: "Advertising Spots",
+    subtitle: "Campaigns that convert",
+    description: "Commercial voiceovers with presence and charisma that capture your audience's attention.",
     icon: Megaphone,
     image: null,
     bg: "linear-gradient(135deg, #2E2210 0%, #5C3F20 40%, #7A5A30 100%)",
   },
   {
-    title: "Vídeos Corporativos",
-    subtitle: "Sofisticação institucional",
-    description: "Voz premium para apresentações executivas, treinamentos e comunicação de marca.",
+    title: "Corporate Videos",
+    subtitle: "Institutional sophistication",
+    description: "Premium voice delivery for executive presentations, training programs, and brand communications.",
     icon: Video,
     image: null,
     bg: "linear-gradient(135deg, #281E0E 0%, #4D3820 40%, #6B5032 100%)",
   },
   {
     title: "E-Learning",
-    subtitle: "Educação envolvente",
-    description: "Conteúdo didático claro e cativante que mantém seus alunos engajados do início ao fim.",
+    subtitle: "Engaging education",
+    description: "Clear, compelling educational content that keeps learners engaged from start to finish.",
     icon: BookOpen,
     image: null,
     bg: "linear-gradient(135deg, #352812 0%, #5E4225 40%, #7E5E35 100%)",
   },
   {
-    title: "Jingles & Vinhetas",
-    subtitle: "Identidade sonora",
-    description: "Crie uma identidade sonora marcante e inesquecível para sua marca.",
+    title: "Jingles & Audio Idents",
+    subtitle: "Sonic identity",
+    description: "Create a striking and unforgettable sonic identity for your brand.",
     icon: Music,
     image: null,
     bg: "linear-gradient(135deg, #382A16 0%, #634826 40%, #806236 100%)",
@@ -75,10 +75,10 @@ export default function CinematicShowcase() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14 anim-fade-up">
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4" style={{ fontWeight: 600 }}>
-            <span className="text-gradient-gold">Vitrine</span> Visual
+            <span className="text-gradient-gold">Visual</span> Showcase
           </h2>
           <p className="font-body text-muted-foreground text-base max-w-xl mx-auto" style={{ fontWeight: 300 }}>
-            Uma apresentação cinematográfica dos nossos serviços premium.
+            A cinematic presentation of our premium services.
           </p>
         </div>
 
