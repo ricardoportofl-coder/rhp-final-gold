@@ -49,7 +49,7 @@ export default function PersonalLevelSection() {
           className="mb-8 text-center font-body text-4xl md:text-5xl"
           style={{ color: "#e8d6b4", fontWeight: 600, letterSpacing: "-0.02em" }}
         >
-          Personal Level
+          Personal AI Assistant
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3 md:gap-7">

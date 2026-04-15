@@ -21,7 +21,7 @@ export default function EnterpriseSection() {
             Tier Four · The Command Center
           </p>
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4" style={{ fontWeight: 600 }}>
-            <span className="text-gradient-gold">Enterprise</span> Level
+            <span className="text-gradient-gold">Enterprise</span> AI Infrastructure
           </h2>
           <p className="font-body text-muted-foreground text-base max-w-2xl mx-auto" style={{ fontWeight: 300 }}>
             The AI brain connecting every store to headquarters & global stakeholders

@@ -46,7 +46,7 @@ export default function BusinessSection() {
             Tier Two
           </p>
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4" style={{ fontWeight: 600 }}>
-            <span className="text-gradient-gold">Business</span> Solutions
+            <span className="text-gradient-gold">Business</span> AI System
           </h2>
           <p className="font-body text-muted-foreground text-base max-w-2xl mx-auto" style={{ fontWeight: 300 }}>
             Designed for clinics, salons & premium service businesses
